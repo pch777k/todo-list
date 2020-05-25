@@ -16,14 +16,17 @@ public class Task {
 	
 	private String title;
 	
-	private LocalDate createOn;
+	private LocalDate createOn = LocalDate.now();
+	
+	private boolean completed;
 
 	public Task() {
 	}
 
-	public Task(String title, LocalDate createOn) {
+	public Task(String title, LocalDate createOn, boolean completed) {
 		this.title = title;
 		this.createOn = createOn;
+		this.completed = completed;
 	}
 
 	public Long getId() {
@@ -48,6 +51,14 @@ public class Task {
 
 	public void setCreateOn(LocalDate createOn) {
 		this.createOn = createOn;
+	}
+	
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
 	}
 
 }
