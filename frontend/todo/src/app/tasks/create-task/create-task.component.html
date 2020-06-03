@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div class="submit-form col-md-12">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input (keyup.enter)="saveTask()"
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="task.title"
+          name="title"
+          placeholder="Task"
+        />
+      </div>
+      <button (click)="saveTask()" routerLink="/tasks" class="btn btn-primary">Submit</button>
+     <!--  <a (click)="saveTask()" routerLink="/tasks" role="button" aria-pressed="true">
+        dodaj
+      </a>
+
+    <!-- <div *ngIf="submitted">
+      <h4>task added</h4>
+    -->
+</div>
+
+</div>
+

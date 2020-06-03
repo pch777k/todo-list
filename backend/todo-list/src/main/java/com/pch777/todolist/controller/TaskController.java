@@ -3,6 +3,7 @@ package com.pch777.todolist.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.pch777.todolist.repository.TaskRepository;
 
 @RestController
 @RequestMapping("api/tasks")
+@CrossOrigin("http://localhost:4200")
 public class TaskController {
 	
 	private TaskRepository taskRepository;
@@ -58,10 +60,11 @@ public class TaskController {
 	}
 	
 	@PutMapping("/{id}")
-	public Task updateTask(@PathVariable Long id, Task updatedTask) {
-		Task task = getTask(id);
+	public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
+		Task task = taskRepository.findById(id).get();
 		task.setTitle(updatedTask.getTitle());
 		task.setCompleted(updatedTask.isCompleted());
+		taskRepository.save(task);
 		return task;
 	}
 	
